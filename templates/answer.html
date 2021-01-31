@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+    <meta charset="UTF-8">
+        <title>Image Classifier VGG16</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <style>
+            body{
+                padding: 0;
+                margin: 0;
+                font-family: serif;
+                background-color: aliceblue;
+            }
+            h4{
+                text-align: center;
+            }
+            @media (max-width: 800px){
+                body{
+                    padding: 5% 12%;
+                    font-size: 15px;
+                }
+            }
+            @media (min-width: 801px) and (max-width: 1500px){
+                body{
+                    padding: 5% 20%;
+                    font-size: 18px;
+                }
+            }  
+            @media (min-width: 1500px){
+                body{
+                    padding: 5% 30%;
+                    font-size: 20px;
+                }
+            }  
+        </style>   
+    </head>
+    <body>
+        <div class="alert alert alert-info">
+            <h4 class="alert-heading">計算結果</h4>
+            <br>
+            <b>カード会社 : {{card}}<hr>支払回数 : {{Count_data}}回<hr>手数料 : {{Fee}}円<hr>合計支払額 : {{Total_Pay}}円<hr>月額支払額 : {{Monthly_Pay}}円</b>
+            <br>
+            <br>
+            <a href="/" class="btn btn-info btn-lg btn-block">戻る</a>
+        </div>
+    </body>

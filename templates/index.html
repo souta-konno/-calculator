@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>支払い手数料確認フォーム</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            font-family: serif;
+            background-color: rgb(243, 243, 243);
+        }
+        ul{
+            list-style-type: none;
+        }
+        .li{
+            text-align: left;
+        }
+        @media (max-width: 640px){
+            body{
+                padding: 5% 8%;
+                font-size: 5px;
+            }
+        }
+        @media (min-width: 640px) and (max-width: 975px){
+            body{
+                padding: 3% 10%;
+            }
+        }  
+        @media (min-width: 975px) and (max-width: 1980px){
+            body{
+                padding: 2% 24%;
+            }
+        }  
+        @media (min-width: 1981px){
+            body{
+                padding: 1% 30%;
+            }
+        }  
+
+        input:invalid {
+            border: solid 3px red;
+        }
+        .name{
+            text-align: right;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="alert alert-dark">
+            <h3 class="titlefont">手数料計算機 <span class="badge badge-secondary">ベータ</span></h2>
+            <p>クレジット決済の手数料を簡単検索</p>
+    </header>
+
+    <section class="alert alert-warning">
+        <p>注意事項</p>
+        <ul>
+            <div class = "li">
+            <li>小数点以下の金額は丸め処理を行っています。</li>
+            <li>支払い金額は1000円～1000万円まで対応しています。</li>
+            <li>24回以上の支払回数に非対応なカード会社がございます。</li>
+        </ul>
+    </section>
+
+    <form action="/manager" method="POST" class="alert alert-success">
+        <label for="money">カード会社</label>
+            <select name="card" class="form-control form-control-lg">
+                <option value="none">手数料0円</option>
+                <option value="Rakuten">楽天カード</option>
+                <option value="Yahoo">ヤフーカード</option>
+                <option value="Sumitomo">三井住友カード</option>
+                <option value="JCB">JCBクレジットカード</option>
+                <option value="Viaso">VIASOカード</option>
+                <option value="Life">ライフカード</option>
+                <option value="Orico">Oricoカード</option>
+                <option value="AEON">AEON CARD</option>
+                <option value="Docomo">D CARD</option>
+                <option value="REX">REX CARD</option>
+            </select>   
+            <br>             
+            <div class="cp_iptxt">
+                <label>支払い金額</label>
+                <br>
+                <input type="number" min="1000" max="10000000" value="10000" class="form-control form-control-lg" id="num" pattern="\d*" oncopy="return false" onpaste="return false" required name="money" placeholder="金額を入力してください" >
+                <span class="focus_bg"></span>
+            </div>
+            <br>
+            <label for="money">支払い回数</label>
+
+            <select class="form-control form-control-lg" name="Number">
+                <option value="2回払い">2回払い</option>
+                <option value="3回払い">3回払い</option>
+                <option value="5回払い">5回払い</option>
+                <option value="6回払い">6回払い</option>
+                <option value="10回払い">10回払い</option>
+                <option value="12回払い">12回払い</option>
+                <option value="15回払い">15回払い</option>
+                <option value="18回払い">18回払い</option>
+                <option value="20回払い">20回払い</option>
+                <option selected value="24回払い">24回払い</option>
+                <option value="30回払い">30回払い</option>
+                <option value="36回払い">36回払い</option>
+                <option value="36回払い">36回払い</option>
+                <option value="48回払い">48回払い</option>
+            </select>             
+            <br>
+            <input type="submit" class="btn btn-dark btn-lg btn-block" value="計算">       
+        </form>
+        <br>
+        <div class="name">
+            <p>開発:Kon</p>
+        </div>
+    </body>
