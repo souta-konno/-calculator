@@ -45,8 +45,55 @@
         .name{
             text-align: right;
         }
+        .info{
+            color: red;
+            font-weight: bolder;
+            text-align: center;
+        }
 
     </style>
+    <script type="text/javascript" language="javascript">
+        function selectboxChange() {
+        target = document.getElementById("output");
+
+        selindex = document.mainform.main_select.selectedIndex;
+        switch (selindex) {
+            case 0:
+            target.innerHTML = "無金利な為、手数料は生じません。";
+            break;
+            case 1:
+            target.innerHTML = "楽天カードの支払回数の上限は「36回払い」です。";
+            break;
+            case 2:
+            target.innerHTML = "Yahoo!カードの支払回数の上限は「48回払い」です。";
+            break;
+            case 3:
+            target.innerHTML = "三井住友カードの支払回数の上限は「24回払い」です。";
+            break;
+            case 4:
+            target.innerHTML = "JCBクレジットカードの支払回数の上限は「24回払い」です。";
+            break;
+            case 5:
+            target.innerHTML = "VIASOカードの支払回数の上限は「24回払い」です。";
+            break;
+            case 6:
+            target.innerHTML = "ライフカードの支払回数の上限は「24回払い」です。";
+            break;
+            case 7:
+            target.innerHTML = "Oricoカードの支払回数の上限は「24回払い」です。";
+            break;
+            case 8:
+            target.innerHTML = "AEON CARDの支払回数の上限は「48回払い」です。";
+            break;
+            case 9:
+            target.innerHTML = "D CARDの支払回数の上限は「36回払い」です。";
+            break;
+            case 10:
+            target.innerHTML = "REX CARDの支払回数の上限は「36回払い」です。";
+            break;
+        }
+        }
+    </script>
 </head>
 
 <body>
@@ -65,12 +112,12 @@
         </ul>
     </section>
 
-    <form action="/manager" method="POST" class="alert alert-success">
+    <form action="/manager" method="POST" class="alert alert-success" name = mainform>
         <label for="money">カード会社</label>
-            <select name="card" class="form-control form-control-lg">
+            <select name="card" id = "main_select" class="form-control form-control-lg" onchange="selectboxChange();">
                 <option value="none">手数料0円</option>
                 <option value="Rakuten">楽天カード</option>
-                <option value="Yahoo">ヤフーカード</option>
+                <option value="Yahoo">Yahoo!カード</option>
                 <option value="Sumitomo">三井住友カード</option>
                 <option value="JCB">JCBクレジットカード</option>
                 <option value="Viaso">VIASOカード</option>
@@ -79,7 +126,7 @@
                 <option value="AEON">AEON CARD</option>
                 <option value="Docomo">D CARD</option>
                 <option value="REX">REX CARD</option>
-            </select>   
+            </select>
             <br>             
             <div class="cp_iptxt">
                 <label>支払い金額</label>
@@ -105,9 +152,11 @@
                 <option value="36回払い">36回払い</option>
                 <option value="36回払い">36回払い</option>
                 <option value="48回払い">48回払い</option>
-            </select>             
+            </select> 
             <br>
-            <input type="submit" class="btn btn-dark btn-lg btn-block" value="計算">       
+            <div class="info" id="output"></div>             
+            <br>
+            <input type="submit" class="btn btn-dark btn-lg btn-block" value="計算">   
         </form>
         <br>
         <div class="name">

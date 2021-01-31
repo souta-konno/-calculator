@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 # Flaskオブジェクトの生成
 app = Flask(__name__)
 
+#SQL(データベース)を用いて開発しようとSQLの学習を同時進行で行いましたが間に合わなかったため、Pyhon内にデータを記述しました。
+
 #JCBクレジットカード,100円当たりの手数料
 JCB_Annual_list={
     "2回払い":0,
@@ -116,23 +118,27 @@ Annual_datalist = {
     "36回払い":36, 
     "48回払い":48
 }
+#上限以上の支払回数が指定された場合のエラー処理
+Error = False
 
-Error = "F"
-
+#支払額などの計算専用関数
 def Annual(Annual_data,Count_data,money):  
+    #100円あたりの手数料が100である場合はその支払回数は存在しないと判断しErrorをTrueにする
     if Annual_data == 100:
+        #誤った計算結果が出ないように結果を全て0にする
         Fee,Total_Pay,Monthly_Pay=0,0,0
-        Error = "T"
+        Error = True
         return Fee,Total_Pay,Monthly_Pay,Count_data,Error
     else:
         Fee = round(money*(Annual_data/100))
         Total_Pay = round(money+Fee)
         Monthly_Pay = round(Total_Pay/Count_data)
-        Error = "F"
+        Error = False
         return Fee,Total_Pay,Monthly_Pay,Count_data,Error
 
+#ErrorがTrueの場合はカード会社名にエラーメッセージを代入
 def ERROR(card,Error):
-    if Error == "T":
+    if Error == True:
         card="ご希望の支払回数に対応しておりません"
         return card
     else:
@@ -157,11 +163,17 @@ def manager():
         ERROR(card,Error)
         return render_template('answer.html',card = card,Count_data=Count_data,Fee=Fee,Total_Pay=Total_Pay,Monthly_Pay=Monthly_Pay)
 
+    #楽天カードが選択されていた場合
     if card == "Rakuten":
+        #結果表示の際に用いるのでcardを楽天カードに書き換える
         card = "楽天カード"
+        #計算関数であるAnnual関数に値を代入
         Rakuten_anser = Annual(Rakuten_Annual_list[Number],Annual_datalist[Number],money)
+        #関数の結果がリスト構造で出力されるのでそれぞれ抽出
         Count_data,Fee,Total_Pay,Monthly_Pay,Error_data = Rakuten_anser[3],Rakuten_anser[0],Rakuten_anser[1],Rakuten_anser[2],Rakuten_anser[4]
+        #エラーが生じていた場合の為にERROR関数を通す(エラーがなければそのままのcardが戻る)
         card = ERROR(card,Error_data)
+        #計算結果をanswer.html内の変数にそれぞれ代入
         return render_template('answer.html',card = card,Count_data=Count_data,Fee=Fee,Total_Pay=Total_Pay,Monthly_Pay=Monthly_Pay) 
 
     elif card == "Yahoo":
@@ -185,6 +197,7 @@ def manager():
         card = ERROR(card,Error_data)
         return render_template('answer.html',card = card,Count_data=Count_data,Fee=Fee,Total_Pay=Total_Pay,Monthly_Pay=Monthly_Pay) 
 
+    #同じ手数料のカード会社が複数あった為、同時に処理する
     elif card == "Viaso" or "Life" or "Orico":
         if card=="Viaso":
             card = "Viasoカード"
