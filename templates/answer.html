@@ -8,10 +8,11 @@
             body{
                 padding: 0;
                 margin: 0;
-                font-family: serif;
+                font-family: 'ヒラギノ角ゴシック';
+                font-weight: bold;
                 background-color: aliceblue;
             }
-            h4{
+            h2{
                 text-align: center;
             }
             @media (max-width: 800px){
@@ -36,9 +37,9 @@
     </head>
     <body>
         <div class="alert alert alert-info">
-            <h4 class="alert-heading">計算結果</h4>
+            <h2 class="alert-heading">計算結果</h2>
             <br>
-            <b>カード会社 : {{card}}<hr>支払回数 : {{Count_data}}回<hr>手数料 : {{Fee}}円<hr>合計支払額 : {{Total_Pay}}円<hr>月額支払額 : {{Monthly_Pay}}円</b>
+            <b>カード会社 : {{card}}<hr>購入金額 : {{Pay}}円<hr>支払回数 : {{Count_data}}回<hr>手数料 : {{Fee}}円<hr>合計支払額 : {{Total_Pay}}円<hr>月額支払額 : {{Monthly_Pay}}円</b>
             <br>
             <br>
             <a href="/" class="btn btn-info btn-lg btn-block">戻る</a>

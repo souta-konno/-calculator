@@ -8,7 +8,8 @@
         body{
             padding: 0;
             margin: 0;
-            font-family: serif;
+            font-family: 'ヒラギノ角ゴシック';
+            font-weight: bold;
             background-color: rgb(243, 243, 243);
         }
         ul{
@@ -50,8 +51,8 @@
             font-weight: bolder;
             text-align: center;
         }
-
     </style>
+    
     <script type="text/javascript" language="javascript">
         function selectboxChange() {
         target = document.getElementById("output");
@@ -98,7 +99,7 @@
 
 <body>
     <header class="alert alert-dark">
-            <h3 class="titlefont">手数料計算機 <span class="badge badge-secondary">ベータ</span></h2>
+            <h3 class="titlefont">手数料計算機 <span class="badge badge-secondary">Beta</span></h2>
             <p>クレジット決済の手数料を簡単検索</p>
     </header>
 
@@ -106,9 +107,11 @@
         <p>注意事項</p>
         <ul>
             <div class = "li">
-            <li>小数点以下の金額は丸め処理を行っています。</li>
-            <li>支払い金額は1000円～1000万円まで対応しています。</li>
-            <li>24回以上の支払回数に非対応なカード会社がございます。</li>
+            <li>★小数点以下の金額は丸め処理を行っています。</li>
+            <li>★支払い金額は1000円～1000万円まで対応しています。</li>
+            <li>★最大48回払いまで対応しています。
+            <li>★24回以上の支払回数に非対応なカード会社があります。</li>
+            <li>★高額な場合、±1～3円の誤差が生じる場合があります。</li>
         </ul>
     </section>
 
@@ -120,9 +123,9 @@
                 <option value="Yahoo">Yahoo!カード</option>
                 <option value="Sumitomo">三井住友カード</option>
                 <option value="JCB">JCBクレジットカード</option>
-                <option value="Viaso">VIASOカード</option>
-                <option value="Life">ライフカード</option>
-                <option value="Orico">Oricoカード</option>
+                <option value="VIASO CARD">VIASO CARD</option>
+                <option value="Life Card">Life Card</option>
+                <option value="Orico Card">Orico Card</option>
                 <option value="AEON">AEON CARD</option>
                 <option value="Docomo">D CARD</option>
                 <option value="REX">REX CARD</option>
@@ -131,7 +134,7 @@
             <div class="cp_iptxt">
                 <label>支払い金額</label>
                 <br>
-                <input type="number" min="1000" max="10000000" value="10000" class="form-control form-control-lg" id="num" pattern="\d*" oncopy="return false" onpaste="return false" required name="money" placeholder="金額を入力してください" >
+                <input type="number" min="1000" max="10000000" value="10000" class="form-control form-control-lg" id="num" pattern="\d*" required name="money" placeholder="金額を入力してください" >
                 <span class="focus_bg"></span>
             </div>
             <br>
